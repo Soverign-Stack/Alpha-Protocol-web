@@ -2,7 +2,7 @@ export const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotoco
 
 /** The company that operates the sites, Alpha GO and the VIBE demo sale today. */
 export const OPERATOR = "Powerclub Global LLC";
-export const CONTACT_EMAIL = "apn@powerclubglobal.com";
+export const CONTACT_EMAIL = "hello@alphaprotocol.network";
 
 /** VIBE on the Aptos testnet. */
 export const VIBE_CONTRACT = "0x24cb561c64c32942eb8600d5135f0185c23bcd06cd8cf33422ce2f9b77d65388";
