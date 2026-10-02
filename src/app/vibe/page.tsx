@@ -10,8 +10,10 @@ export const metadata: Metadata = {
 };
 
 const facts: [string, React.ReactNode][] = [
-  ["Maximum supply", "1 billion VIBE"],
-  ["Network", "Aptos testnet, since February 2026"],
+  ["Supply", "1,002,000,000 VIBE exist on the Aptos testnet today. We intend a maximum of 1 billion at mainnet. The current testnet contract does not enforce a cap, so that maximum is a policy we keep to, not a rule the code enforces."],
+  ["Who holds it", "About 88.6% is in the contract's admin account and about 11% in a second company-controlled wallet. The 1,000,000 VIBE for this event sits in its own sale wallet. The rest is in small test balances."],
+  ["Admin powers", "The admin key can create VIBE, remove VIBE from any account, change the token's details and upgrade the contract. These powers exist so the testnet can be reset. We will publish how they are limited before mainnet."],
+  ["Network", "Aptos testnet, since January 2026. An earlier version of the token from the same contract also exists and is no longer used."],
   [
     "Contract",
     <a key="c" href={VIBE_EXPLORER} target="_blank" rel="noopener noreferrer" className="link" title={VIBE_CONTRACT}>

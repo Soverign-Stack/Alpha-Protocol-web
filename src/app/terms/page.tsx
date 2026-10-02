@@ -54,6 +54,13 @@ export default function TermsPage() {
           </p>
         </div>
 
+        <div className="space-y-3" id="corrections">
+          <h2>Corrections</h2>
+          <p>
+            We would rather say when we got something wrong. Until 2 October 2026, some of our sister sites made claims that were not true at the time: the Spectrum Galactic site described satellites as in orbit, the VIBE site offered the token at $0.001 with staking returns and governance, the Pythia site described a running network with Bitcoin mining revenue, and the Vibertas site said its operating system was available. None of those things existed. All of those pages were rewritten on 2 October 2026 to say what exists today, and the older versions remain in our public code history. Where this site described the mesh core as working, it has been corrected to say which parts work in the core library and which do not yet run in the packaged node.
+          </p>
+        </div>
+
         <div className="space-y-3">
           <h2>Other sites</h2>
           <p>

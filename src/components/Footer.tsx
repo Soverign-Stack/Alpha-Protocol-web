@@ -26,6 +26,7 @@ export default function Footer() {
               <li><a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Community</a></li>
             )}
             <li><Link href="/terms" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Terms and privacy</Link></li>
+            <li><Link href="/terms#corrections" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Corrections</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Contact</a></li>
           </ul>
         </div>
@@ -48,7 +49,7 @@ export default function Footer() {
           <p>
             Designed and built by{" "}
             <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">Powerclub Global</a>
-            . Backed by{" "}
+            . Founded by the managing partner of{" "}
             <a href="https://www.okbventures.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">OKB Ventures</a>.
           </p>
         </div>
