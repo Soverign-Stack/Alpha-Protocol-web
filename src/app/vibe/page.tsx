@@ -13,7 +13,7 @@ const facts: [string, React.ReactNode][] = [
   ["Maximum supply", "1 billion VIBE"],
   ["Network", "Aptos testnet, since February 2026"],
   ["Presale price", "$0.01 per VIBE"],
-  ["Pay with", "Bitcoin, Ether or Aptos"],
+  ["Pay with", "Bitcoin, USDT or Aptos"],
   ["Where you hold it", "Your Alpha GO account today. Delivery to your own Aptos testnet address is being built."],
   ["Allocation and vesting", "Being finalised. Published before mainnet."],
 ];
@@ -105,7 +105,7 @@ export default function VibePage() {
               </div>
               <div>
                 <dt>Payments cannot be reversed</dt>
-                <dd>Bitcoin, Ether and Aptos payments are final once sent. Send the exact amount shown, on the network shown.</dd>
+                <dd>Bitcoin, USDT and Aptos payments are final once sent. Send the exact amount shown, on the network shown.</dd>
               </div>
               <div>
                 <dt>Know your own rules</dt>
