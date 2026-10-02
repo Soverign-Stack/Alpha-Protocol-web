@@ -18,11 +18,11 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="text-[var(--muted)] no-underline hover:text-[var(--gold-hi)]">{n.label}</Link>
+                <Link href={n.href} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">{n.label}</Link>
               </li>
             ))}
-            <li><a href={GO_URL} className="text-[var(--muted)] no-underline hover:text-[var(--gold-hi)]">Alpha GO</a></li>
-            <li><a href={`${GO_URL}/vibe`} className="text-[var(--muted)] no-underline hover:text-[var(--gold-hi)]">Testnet VIBE</a></li>
+            <li><a href={GO_URL} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Alpha GO</a></li>
+            <li><a href={`${GO_URL}/vibe`} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Testnet VIBE</a></li>
           </ul>
         </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {STACK.filter((s) => s.url).map((s) => (
               <li key={s.id}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] no-underline hover:text-[var(--gold-hi)]">{s.name}</a>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">{s.name}</a>
               </li>
             ))}
           </ul>
@@ -43,9 +43,9 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Alpha Protocol Network. Part of the Sovereign Stack.</p>
           <p>
             Designed and built by{" "}
-            <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--gold-hi)]">Powerclub Global</a>
+            <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">Powerclub Global</a>
             . Backed by{" "}
-            <a href="https://okb-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--gold-hi)]">OKB Ventures</a>.
+            <a href="https://okb-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">OKB Ventures</a>.
           </p>
         </div>
       </div>

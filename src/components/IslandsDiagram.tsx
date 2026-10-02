@@ -31,20 +31,20 @@ export default function IslandsDiagram() {
         </desc>
 
         {OVERLAY.map((d) => (
-          <path key={d} d={d} className="overlay-link" fill="none" stroke="var(--gold-hi)" strokeWidth="1.6" />
+          <path key={d} d={d} className="overlay-link" fill="none" stroke="var(--accent-hi)" strokeWidth="1.6" />
         ))}
 
         {ISLANDS.map((isl) => {
           const [x, y, w, h] = isl.box;
           return (
             <g key={isl.label}>
-              <rect x={x} y={y} width={w} height={h} rx="18" fill="rgba(174,144,76,0.045)" stroke="var(--gold-dim)" strokeWidth="1" />
+              <rect x={x} y={y} width={w} height={h} rx="18" fill="rgba(220, 38, 38,0.045)" stroke="var(--accent-dim)" strokeWidth="1" />
               <text x={x + 4} y={y + h + 20} fill="var(--muted)" fontSize="13" fontWeight="500" style={{ fontFamily: "var(--font-body)" }}>
                 {isl.label}
               </text>
               {isl.nodes.map((a, i) =>
                 isl.nodes.slice(i + 1).map((b) => (
-                  <line key={`${a}-${b}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="var(--gold)" strokeWidth="1.4" />
+                  <line key={`${a}-${b}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="var(--accent)" strokeWidth="1.4" />
                 )),
               )}
               {isl.devices.map((d) => {
@@ -56,8 +56,8 @@ export default function IslandsDiagram() {
               ))}
               {isl.nodes.map((n) => (
                 <g key={`n${n}`}>
-                  <circle cx={n[0]} cy={n[1]} r="15" fill="rgba(201,169,94,0.14)" />
-                  <circle cx={n[0]} cy={n[1]} r="8" fill="var(--gold-hi)" stroke="var(--bg)" strokeWidth="2" />
+                  <circle cx={n[0]} cy={n[1]} r="15" fill="rgba(239, 68, 68,0.14)" />
+                  <circle cx={n[0]} cy={n[1]} r="8" fill="var(--accent-hi)" stroke="var(--bg)" strokeWidth="2" />
                 </g>
               ))}
             </g>
@@ -65,9 +65,9 @@ export default function IslandsDiagram() {
         })}
       </svg>
       <figcaption className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[0.8125rem] text-[var(--muted)]">
-        <span className="flex items-center gap-2"><i className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--gold-hi)]" />Node</span>
+        <span className="flex items-center gap-2"><i className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--accent-hi)]" />Node</span>
         <span className="flex items-center gap-2"><i className="inline-block h-2.5 w-2.5 rounded-full border border-[rgba(232,234,240,0.6)]" />Your devices</span>
-        <span className="flex items-center gap-2"><i className="inline-block w-6 border-t border-dashed border-[var(--gold-hi)]" />Encrypted link between networks</span>
+        <span className="flex items-center gap-2"><i className="inline-block w-6 border-t border-dashed border-[var(--accent-hi)]" />Encrypted link between networks</span>
       </figcaption>
     </figure>
   );

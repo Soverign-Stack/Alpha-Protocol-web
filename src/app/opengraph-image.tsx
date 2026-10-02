@@ -10,10 +10,10 @@ export default function OpenGraphImage() {
       <div
         style={{
           width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between",
-          background: "#08090c", color: "#e8eaf0", padding: 72, border: "1px solid #8a6e38",
+          background: "#08090c", color: "#e8eaf0", padding: 72, border: "1px solid #7f1d1d",
         }}
       >
-        <div style={{ display: "flex", fontSize: 30, letterSpacing: 4, color: "#c9a95e" }}>ALPHA PROTOCOL NETWORK</div>
+        <div style={{ display: "flex", fontSize: 30, letterSpacing: 4, color: "#f05252" }}>ALPHA PROTOCOL NETWORK</div>
         <div style={{ display: "flex", fontSize: 76, lineHeight: 1.1, maxWidth: 980 }}>
           Your own private network, joined to a global mesh
         </div>

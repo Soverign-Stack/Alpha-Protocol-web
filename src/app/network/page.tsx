@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import IslandsDiagram from "@/components/IslandsDiagram";
 import Status from "@/components/Status";
+import RelayVsDirect from "@/components/diagrams/RelayVsDirect";
+import RolesDiagram from "@/components/diagrams/RolesDiagram";
+import DomainDiagram from "@/components/diagrams/DomainDiagram";
+import ReceiptDiagram from "@/components/diagrams/ReceiptDiagram";
+import Shot from "@/components/Shot";
 
 export const metadata: Metadata = {
   title: "How the network works",
@@ -98,6 +103,13 @@ export default function NetworkPage() {
                 Radio that hops from node to node does not scale beyond a neighbourhood. That is physics, and the design accepts it: islands stay local, and the overlay covers distance.
               </p>
             </div>
+            <Shot
+              className="mt-8 max-w-3xl"
+              name="network-island"
+              ratio="21/9"
+              alt="A street of buildings at night with a few rooftop nodes linked across it"
+              brief="A residential street at blue hour seen from a rooftop, three small rooftop nodes with red LEDs visible on neighbouring buildings."
+            />
           </section>
 
           <section id="overlay">
@@ -121,12 +133,18 @@ export default function NetworkPage() {
                 <li>Later, satellite links carry the overlay where there is no internet at all.</li>
               </ul>
             </div>
+            <div className="mt-8 max-w-3xl">
+              <RelayVsDirect />
+            </div>
           </section>
 
           <section id="roles">
             <h2>Who does what</h2>
             <div className="prose-w">
               <p>Every device on the network plays one of three parts.</p>
+            </div>
+            <div className="mt-6">
+              <RolesDiagram />
             </div>
             <table className="deftable max-w-3xl">
               <tbody>
@@ -208,6 +226,9 @@ export default function NetworkPage() {
                 Whether a domain connects to the global mesh, and what crosses that boundary, is the domain owner&apos;s decision.
               </p>
             </div>
+            <div className="mt-8">
+              <DomainDiagram />
+            </div>
           </section>
 
           <section id="rewards">
@@ -224,6 +245,11 @@ export default function NetworkPage() {
                 <li>Storing data and running computation for others come later, each with its own proof that the work was done.</li>
                 <li>Paying for compute depends on real demand for it. Treat it as a bet, not a yield.</li>
               </ul>
+            </div>
+            <div className="my-8">
+              <ReceiptDiagram />
+            </div>
+            <div className="prose-w">
               <h3>VIBE</h3>
               <p>
                 VIBE is the token rewards are paid in. It runs on the Aptos testnet today. Testnet VIBE is for use inside the Alpha Protocol ecosystem; it is not a share or a promise of future value. On Aptos, balances and payouts are public. The design moves VIBE to a form where amounts and parties are hidden, with the option to disclose them by choice.

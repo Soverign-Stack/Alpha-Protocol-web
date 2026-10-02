@@ -5,11 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GO_URL, NAV, STACK } from "@/lib/site";
 
-function Mark() {
+// The mark is a lowercase Greek alpha.
+export function Mark({ size = 30 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden>
-      <circle cx="20" cy="20" r="19" fill="none" stroke="var(--gold)" strokeWidth="1.2" />
-      <path d="M20 9 11 30h3.6l1.9-4.6h7l1.9 4.6H29L20 9Zm0 7.4 2.3 5.9h-4.6l2.3-5.9Z" fill="var(--gold-hi)" />
+    <svg viewBox="0 0 40 40" width={size} height={size} aria-hidden>
+      <path
+        d="M33.5 8.5C28 21 21.5 31.5 14.5 31.5 9 31.5 5.5 26.8 5.5 20S9 8.5 14.5 8.5C22 8.5 27.5 19.5 34 31.5"
+        fill="none" stroke="var(--accent-hi)" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -39,7 +42,7 @@ export default function Header() {
               aria-expanded={stack}
               className="ml-2 flex items-center gap-1.5 rounded-md border border-[var(--line-soft)] px-2.5 py-1.5 text-xs text-[var(--muted)] hover:border-[var(--line)] hover:text-[var(--text)]"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[var(--alpha-red)]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
               Sovereign Stack
               <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden className={stack ? "rotate-180" : ""}>
                 <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -56,7 +59,7 @@ export default function Header() {
                         <span>
                           <span className="block text-sm font-medium text-[var(--text)]">
                             {s.name}
-                            {s.here && <span className="ml-2 text-xs font-normal text-[var(--gold-hi)]">You are here</span>}
+                            {s.here && <span className="ml-2 text-xs font-normal text-[var(--accent-hi)]">You are here</span>}
                           </span>
                           <span className="block text-xs text-[var(--muted)]">{s.role}</span>
                         </span>
@@ -82,12 +85,12 @@ export default function Header() {
               key={n.href}
               href={n.href}
               aria-current={pathname === n.href ? "page" : undefined}
-              className={`text-sm no-underline transition-colors hover:text-[var(--gold-hi)] ${pathname === n.href ? "text-[var(--gold-hi)]" : "text-[var(--muted)]"}`}
+              className={`text-sm no-underline transition-colors hover:text-[var(--accent-hi)] ${pathname === n.href ? "text-[var(--accent-hi)]" : "text-[var(--muted)]"}`}
             >
               {n.label}
             </Link>
           ))}
-          <a href={GO_URL} className="text-sm text-[var(--muted)] no-underline transition-colors hover:text-[var(--gold-hi)]">Alpha GO</a>
+          <a href={GO_URL} className="text-sm text-[var(--muted)] no-underline transition-colors hover:text-[var(--accent-hi)]">Alpha GO</a>
         </nav>
 
         <div className="flex items-center gap-3">

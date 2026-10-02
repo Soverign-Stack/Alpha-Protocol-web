@@ -4,6 +4,8 @@ import IslandsDiagram from "@/components/IslandsDiagram";
 import JoinForm from "@/components/JoinForm";
 import Status from "@/components/Status";
 import { GO_URL, STACK } from "@/lib/site";
+import MeshField from "@/components/MeshField";
+import Shot from "@/components/Shot";
 
 const audiences = [
   { id: "people", title: "People and households", body: "A private network for your own devices, and a way to reach other people without a platform reading along." },
@@ -53,7 +55,9 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="wrap pb-16 pt-12 md:pb-24 md:pt-20">
+      <section className="hero">
+        <MeshField seed={11} cols={24} rows={9} lit={7} className="hero-mesh" />
+        <div className="wrap pb-16 pt-12 md:pb-24 md:pt-20">
         <h1 className="max-w-5xl">Your own private network, joined to a global mesh</h1>
         <div className="mt-10 grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
@@ -70,12 +74,22 @@ export default function Home() {
           </div>
           <IslandsDiagram />
         </div>
+        </div>
       </section>
 
       {/* The idea */}
       <section className="section">
         <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.25fr]">
-          <h2>The internet runs through a few companies. This does not.</h2>
+          <div>
+            <h2>The internet runs through a few companies. This does not.</h2>
+            <Shot
+              className="mt-8"
+              name="home-idea"
+              ratio="4/3"
+              alt="A small network node on a windowsill at dusk, with a city behind it"
+              brief="A small black network node with one red status light on a windowsill at dusk, an out-of-focus city skyline behind it."
+            />
+          </div>
           <div className="space-y-5 text-[#c6cad3]">
             <p>
               Almost everything you send passes through a provider who can see who you talk to, when, and often what you say. Alpha Protocol is built so that any person or organisation can connect devices directly and exchange data without a central party observing who talks to whom, what they exchange, or that they take part at all.
@@ -88,6 +102,16 @@ export default function Home() {
             </p>
             <Link href="/network" className="link inline-block">Read how the network works</Link>
           </div>
+        </div>
+      </section>
+
+      {/* Statement */}
+      <section className="band">
+        <MeshField seed={29} cols={26} rows={6} lit={9} />
+        <div className="wrap py-20 text-center md:py-28">
+          <p className="display mx-auto max-w-3xl text-[clamp(1.5rem,3.2vw,2.4rem)] leading-tight">
+            A network that belongs to the people who run it
+          </p>
         </div>
       </section>
 
@@ -111,10 +135,17 @@ export default function Home() {
       <section className="section">
         <div className="wrap">
           <h2>How you get on it</h2>
+          <Shot
+            className="mt-10"
+            name="home-node"
+            ratio="21/9"
+            alt="An Omega Wireless node being plugged in on a desk"
+            brief="Hands plugging in a compact matte-black mesh node with two short antennas on a wooden desk, warm lamp light, one red LED lit."
+          />
           <ol className="mt-10 grid gap-10 md:grid-cols-3">
             {steps.map((s, i) => (
               <li key={s.title} className="border-t border-[var(--line)] pt-5">
-                <p className="text-sm font-medium text-[var(--gold-hi)]">Step {i + 1}</p>
+                <p className="text-sm font-medium text-[var(--accent-hi)]">Step {i + 1}</p>
                 <h3 className="mt-2">{s.title}</h3>
                 <p className="muted mt-2">{s.body}</p>
                 {s.link && (
@@ -135,9 +166,9 @@ export default function Home() {
               Alpha GO is the app for the network. For TOKEN2049 week it runs as a free web demo: more than 400 side events on one map, showing what is on right now and what starts next.
             </p>
             <ul className="mt-6 space-y-2.5 text-[#c6cad3]">
-              <li className="border-l border-[var(--gold-dim)] pl-4">Move the clock to see where the city will be busy tonight.</li>
-              <li className="border-l border-[var(--gold-dim)] pl-4">Register for events without leaving the app.</li>
-              <li className="border-l border-[var(--gold-dim)] pl-4">Check in at venues to earn testnet VIBE.</li>
+              <li className="border-l border-[var(--accent-dim)] pl-4">Move the clock to see where the city will be busy tonight.</li>
+              <li className="border-l border-[var(--accent-dim)] pl-4">Register for events without leaving the app.</li>
+              <li className="border-l border-[var(--accent-dim)] pl-4">Check in at venues to earn testnet VIBE.</li>
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href={GO_URL} className="btn">Open Alpha GO</a>
@@ -196,13 +227,13 @@ export default function Home() {
             {STACK.map((s) => (
               <li
                 key={s.id}
-                className={`grid gap-1 border-b border-[var(--line)] py-4 sm:grid-cols-[13rem_1fr] sm:gap-6 ${s.here ? "bg-[rgba(174,144,76,0.07)] px-4 -mx-4" : ""}`}
+                className={`grid gap-1 border-b border-[var(--line)] py-4 sm:grid-cols-[13rem_1fr] sm:gap-6 ${s.here ? "bg-[rgba(220, 38, 38,0.07)] px-4 -mx-4" : ""}`}
               >
                 <div>
                   {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-semibold no-underline hover:text-[var(--gold-hi)]">{s.name}</a>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-semibold no-underline hover:text-[var(--accent-hi)]">{s.name}</a>
                   ) : (
-                    <span className={`font-semibold ${s.here ? "text-[var(--gold-hi)]" : ""}`}>{s.name}</span>
+                    <span className={`font-semibold ${s.here ? "text-[var(--accent-hi)]" : ""}`}>{s.name}</span>
                   )}
                   <span className="block text-sm text-[var(--faint)]">{s.role}</span>
                 </div>

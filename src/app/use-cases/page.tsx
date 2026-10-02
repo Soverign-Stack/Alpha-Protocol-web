@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Shot from "@/components/Shot";
 import Status, { type StatusKind } from "@/components/Status";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ type Case = {
   need: string[];
   status: { kind: StatusKind; text: string }[];
   join: { as: string; label: string };
+  image: { alt: string; brief: string };
 };
 
 const cases: Case[] = [
@@ -34,6 +36,7 @@ const cases: Case[] = [
       { kind: "planned", text: "Alpha GO mobile app" },
     ],
     join: { as: "updates", label: "Get told when the apps are ready" },
+    image: { alt: "A family living room in the evening with a small network node on a shelf", brief: "A lived-in living room in the evening, a phone and laptop in use on the sofa, a small black node with a red LED on the bookshelf behind." },
   },
   {
     id: "organisations",
@@ -51,6 +54,7 @@ const cases: Case[] = [
       { kind: "building", text: "Site-to-site tunnels" },
     ],
     join: { as: "organisation", label: "Talk to us about a private network" },
+    image: { alt: "A small server cabinet in an office", brief: "A compact server cabinet in the corner of a small modern office, door open, tidy cabling, one technician's hand on the rack, red status lights." },
   },
   {
     id: "field",
@@ -67,6 +71,7 @@ const cases: Case[] = [
       { kind: "planned", text: "Long-range radio links between nodes" },
     ],
     join: { as: "organisation", label: "Tell us about your site or event" },
+    image: { alt: "A mesh node on a tripod at an outdoor event", brief: "A weatherproof mesh node on a tripod at the edge of an outdoor festival or conference site at dusk, crowd and stage lights soft in the background." },
   },
   {
     id: "operators",
@@ -83,6 +88,7 @@ const cases: Case[] = [
       { kind: "planned", text: "Seed network of independent operators" },
     ],
     join: { as: "operator", label: "Put your name down to run a node" },
+    image: { alt: "A person mounting a node on a rooftop", brief: "A person fixing a small solar-powered relay node to a rooftop mast at golden hour, town rooftops behind." },
   },
   {
     id: "builders",
@@ -99,6 +105,7 @@ const cases: Case[] = [
       { kind: "planned", text: "Marketplace for services between nodes" },
     ],
     join: { as: "builder", label: "Join as a builder" },
+    image: { alt: "A developer at a desk with two nodes and a laptop", brief: "A developer's desk at night: laptop with code on screen (unreadable), two small black nodes connected beside it, red LEDs lit." },
   },
 ];
 
@@ -131,6 +138,7 @@ export default function UseCasesPage() {
               <Link href={c.join.as === "updates" ? "/join" : `/join?as=${c.join.as}`} className="btn btn-ghost mt-8">{c.join.label}</Link>
             </div>
             <aside className="space-y-8 lg:pt-2">
+              <Shot name={`use-${c.id}`} ratio="4/3" alt={c.image.alt} brief={c.image.brief} />
               <div>
                 <h3>What you need</h3>
                 <ul className="mt-3 border-t border-[var(--line)]">

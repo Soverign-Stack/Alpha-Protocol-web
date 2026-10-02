@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Status from "@/components/Status";
+import MeshField from "@/components/MeshField";
 
 export const metadata: Metadata = {
   title: "Build",
@@ -55,7 +56,14 @@ export default function BuildPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="band">
+        <MeshField seed={53} cols={26} rows={5} lit={8} />
+        <div className="wrap py-16 text-center md:py-20">
+          <p className="display mx-auto max-w-3xl text-[clamp(1.4rem,3vw,2.1rem)] leading-tight">One library, from a phone to a server</p>
+        </div>
+      </section>
+
+      <section className="section border-t-0">
         <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div>
             <h2>What is not there yet</h2>

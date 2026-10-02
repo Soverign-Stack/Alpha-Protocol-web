@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import MeshField from "@/components/MeshField";
 
 export const metadata: Metadata = {
   title: "Roadmap",
@@ -51,7 +52,9 @@ const stages = [
 
 export default function RoadmapPage() {
   return (
-    <section className="wrap pb-24 pt-14 md:pt-20">
+    <section className="hero">
+      <MeshField seed={71} cols={24} rows={8} lit={6} className="hero-mesh" />
+      <div className="wrap pb-24 pt-14 md:pt-20">
       <h1>Roadmap</h1>
       <p className="lede mt-6">
         The order we are building in. Each stage starts once the one before it works, so these are steps rather than dates.
@@ -61,10 +64,10 @@ export default function RoadmapPage() {
         {stages.map((s, i) => (
           <li key={s.when} className="relative border-l border-[var(--line)] pb-12 pl-8 last:pb-0">
             <span
-              className={`absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--gold)] ${i === 0 ? "bg-[var(--gold)]" : "bg-[var(--bg)]"}`}
+              className={`absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--accent)] ${i === 0 ? "bg-[var(--accent)]" : "bg-[var(--bg)]"}`}
               aria-hidden
             />
-            <p className="text-sm font-medium text-[var(--gold-hi)]">{s.when}</p>
+            <p className="text-sm font-medium text-[var(--accent-hi)]">{s.when}</p>
             <h2 className="mt-1 text-[1.5rem]">{s.title}</h2>
             <ul className="mt-4 space-y-2.5">
               {s.items.map((item) => (
@@ -78,6 +81,7 @@ export default function RoadmapPage() {
       <div className="mt-14 flex flex-col gap-3 sm:flex-row">
         <Link href="/join" className="btn">Join the community</Link>
         <Link href="/network" className="btn btn-ghost">How the network works</Link>
+      </div>
       </div>
     </section>
   );

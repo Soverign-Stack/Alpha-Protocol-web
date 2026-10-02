@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JoinForm from "@/components/JoinForm";
+import Shot from "@/components/Shot";
 
 export const metadata: Metadata = {
   title: "Join",
@@ -37,8 +38,16 @@ export default async function JoinPage({ searchParams }: { searchParams: Promise
           ))}
         </dl>
       </div>
-      <div className="panel self-start">
-        <JoinForm source="website-join" interest={interest} />
+      <div className="space-y-6 self-start">
+        <div className="panel">
+          <JoinForm source="website-join" interest={interest} />
+        </div>
+        <Shot
+          name="join-community"
+          ratio="16/10"
+          alt="People around a table setting up network nodes together"
+          brief="Four or five people around a table at a meetup, setting up small black nodes and laptops together, candid, warm light, red LEDs."
+        />
       </div>
     </section>
   );
