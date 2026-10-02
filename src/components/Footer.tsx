@@ -49,7 +49,7 @@ export default function Footer() {
             Designed and built by{" "}
             <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">Powerclub Global</a>
             . Backed by{" "}
-            <a href="https://okb-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">OKB Ventures</a>.
+            <a href="https://www.okbventures.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">OKB Ventures</a>.
           </p>
         </div>
       </div>

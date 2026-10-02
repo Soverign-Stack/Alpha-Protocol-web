@@ -211,7 +211,7 @@ export default function InvestorsPage() {
             </p>
             <p>
               <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="link">Powerclub Global</a> designs, builds and operates the software with a core engineering team.{" "}
-              <a href="https://okb-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="link">OKB Ventures</a> is the investment arm behind the Sovereign Stack.
+              <a href="https://www.okbventures.com" target="_blank" rel="noopener noreferrer" className="link">OKB Ventures</a> is the investment arm behind the Sovereign Stack.
             </p>
             <p>
               Today all business is transacted by {OPERATOR}, including these sites, Alpha GO and the VIBE demo sale. Dedicated entities for the protocol and for the hardware business are being set up. We will tell you exactly where that stands on a call.
