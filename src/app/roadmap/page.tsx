@@ -1,71 +1,84 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = { title: "Roadmap" };
+export const metadata: Metadata = {
+  title: "Roadmap",
+  description: "The order Alpha Protocol Network is being built in, stage by stage.",
+};
 
 // Stages, not dates: each one starts when the one before it works.
 const stages = [
   {
     when: "Now",
-    title: "Alpha GO demo and community",
+    title: "A working core and a public demo",
     items: [
-      "Alpha GO live for TOKEN2049 week in Singapore: a map of the week's events, accounts, check-ins and testnet VIBE",
-      "Mesh core running between nodes on local networks",
-      "Desktop client in testing",
+      "Nodes on a local network find each other and exchange encrypted traffic",
+      "Links across the internet, through a relay we operate",
+      "VIBE on the Aptos testnet",
+      "Alpha GO live as a web demo for TOKEN2049 week in Singapore",
     ],
   },
   {
     when: "Next",
-    title: "Beta network",
+    title: "The seed network",
     items: [
-      "Installers for the desktop client and an open-source release of the protocol",
-      "Direct links between networks across the internet",
-      "A first group of node operators relaying traffic and earning testnet VIBE",
+      "Installers for the desktop client",
+      "Direct links between networks, with no single relay in the path",
+      "Membership that does not reveal who you are",
+      "A first group of independent operators, in several countries, earning testnet VIBE for relaying",
     ],
   },
   {
     when: "After that",
-    title: "Nodes and private networks",
+    title: "Islands and private domains",
     items: [
       "Omega Wireless nodes that arrive ready to join",
-      "Private network controls for households and organisations",
-      "Alpha GO as a full mobile app, with wallet and payments",
+      "Private domains for organisations, and tunnels between their sites",
+      "Phone-to-phone links and long-range radio between nodes",
+      "Alpha GO as a full mobile app",
     ],
   },
   {
     when: "Later",
-    title: "A wider mesh",
+    title: "Public launch and a wider mesh",
     items: [
-      "Radio links between nodes where there is no internet",
-      "Devices and machines on the network, not only people",
+      "Rewards for storage and computation, alongside relaying",
+      "Services offered between nodes",
+      "Satellite links for places the internet does not reach",
     ],
   },
 ];
 
 export default function RoadmapPage() {
   return (
-    <div className="min-h-screen py-20 px-4 sm:px-6">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">Roadmap</h1>
-        <p className="text-[var(--text-secondary)] text-lg mt-4">
-          The order we are building in. Each stage starts once the one before it works, so these are steps rather than dates.
-        </p>
+    <section className="wrap pb-24 pt-14 md:pt-20">
+      <h1>Roadmap</h1>
+      <p className="lede mt-6">
+        The order we are building in. Each stage starts once the one before it works, so these are steps rather than dates.
+      </p>
 
-        <ol className="mt-12 space-y-10">
-          {stages.map((s) => (
-            <li key={s.when} className="border-l-2 border-[var(--alpha-accent)]/60 pl-6">
-              <p className="text-sm font-semibold text-[var(--alpha-accent)]">{s.when}</p>
-              <h2 className="text-xl font-semibold text-[var(--text-primary)] mt-1">{s.title}</h2>
-              <ul className="mt-3 space-y-2">
-                {s.items.map((i) => (
-                  <li key={i} className="text-[var(--text-secondary)] leading-relaxed">{i}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+      <ol className="mt-14 max-w-3xl">
+        {stages.map((s, i) => (
+          <li key={s.when} className="relative border-l border-[var(--line)] pb-12 pl-8 last:pb-0">
+            <span
+              className={`absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--gold)] ${i === 0 ? "bg-[var(--gold)]" : "bg-[var(--bg)]"}`}
+              aria-hidden
+            />
+            <p className="text-sm font-medium text-[var(--gold-hi)]">{s.when}</p>
+            <h2 className="mt-1 text-[1.5rem]">{s.title}</h2>
+            <ul className="mt-4 space-y-2.5">
+              {s.items.map((item) => (
+                <li key={item} className="text-[#c6cad3]">{item}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
 
-        <a href="/#join" className="btn-primary mt-12">Join the community</a>
+      <div className="mt-14 flex flex-col gap-3 sm:flex-row">
+        <Link href="/join" className="btn">Join the community</Link>
+        <Link href="/network" className="btn btn-ghost">How the network works</Link>
       </div>
-    </div>
+    </section>
   );
 }

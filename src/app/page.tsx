@@ -1,62 +1,49 @@
+import Image from "next/image";
 import Link from "next/link";
+import IslandsDiagram from "@/components/IslandsDiagram";
 import JoinForm from "@/components/JoinForm";
-
-const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
-
-// In order: you need a node before a network, and a network before you can join the mesh.
-const steps = [
-  {
-    title: "Start with a node",
-    body: "A node is a small box you own. Plug it in at home, in the office or at an event and it becomes your entry point to the network.",
-    link: { href: "https://omegawireless.xyz", label: "See Omega Wireless nodes" },
-  },
-  {
-    title: "Run your own private network",
-    body: "Your devices and your team connect through your node. What passes between them is encrypted, and it stays on hardware you control rather than on someone else's servers.",
-  },
-  {
-    title: "Join the global mesh",
-    body: "Link your network to others when you choose to. Nodes carry traffic for each other, and the capacity you contribute earns VIBE.",
-  },
-];
+import Status from "@/components/Status";
+import { GO_URL, STACK } from "@/lib/site";
 
 const audiences = [
-  {
-    title: "For people",
-    body: "A private connection for your household and your devices that does not depend on a single provider, plus rewards for the capacity you share.",
-  },
-  {
-    title: "For organisations",
-    body: "A network for your team, sites and machines that you deploy and control yourself, with the option to reach partners over the mesh.",
-  },
-  {
-    title: "For node operators",
-    body: "Run nodes where coverage is needed, relay for the network and earn for the work your hardware does.",
-  },
+  { id: "people", title: "People and households", body: "A private network for your own devices, and a way to reach other people without a platform reading along." },
+  { id: "organisations", title: "Organisations", body: "A network for your team, sites and machines that you deploy and control, with business data staying on your own hardware." },
+  { id: "field", title: "Events and field teams", body: "Coverage you bring with you: a handful of nodes that link a venue, a site or a crew, with or without an internet connection." },
+  { id: "operators", title: "Node operators", body: "Run nodes where the network needs them, carry traffic for others and earn for the work your hardware does." },
+  { id: "builders", title: "Builders", body: "Services and applications that talk directly between nodes, on a protocol rather than a platform." },
+];
+
+// In order: a node comes first, then your own network, then the wider mesh.
+const steps = [
+  { title: "Start with a node", body: "A node is a small box you own. It is your entry point: plug it in at home, in the office or at an event.", link: { href: "https://www.omegawireless.xyz", label: "Omega Wireless hardware" } },
+  { title: "Run your own network", body: "Your devices connect through your node. Traffic between them is encrypted end to end and stays on hardware you control." },
+  { title: "Join the mesh", body: "Link your network to others when you choose to. Nodes carry traffic for each other, and that work earns VIBE." },
 ];
 
 const status = [
   {
-    label: "Working today",
+    kind: "working" as const,
     items: [
-      "The mesh core: nodes find each other, prove who they are and exchange encrypted traffic",
-      "A desktop client, in testing with our own team",
-      "Alpha GO, live as a public demo for TOKEN2049 week in Singapore",
+      "Nodes on the same local network find each other, prove who they are and exchange encrypted traffic",
+      "Links across the internet, through a relay we operate",
+      "VIBE on the Aptos testnet",
+      "Alpha GO, live as a public demo for TOKEN2049 week",
     ],
   },
   {
-    label: "Being built now",
+    kind: "building" as const,
     items: [
-      "Private network controls, so a person or an organisation decides who is on their network",
-      "Direct links between networks across the internet",
+      "Direct links across the internet, with no single relay in the path",
+      "Membership that proves you belong without saying who you are",
+      "Private domains for organisations",
       "The software that runs on Omega Wireless nodes",
     ],
   },
   {
-    label: "Next",
+    kind: "planned" as const,
     items: [
-      "A beta network with the first group of node operators",
-      "Testnet VIBE rewards for relaying",
+      "A seed network of independent node operators earning testnet VIBE for relaying",
+      "Radio links between nodes where there is no internet",
       "Alpha GO as a full mobile app",
     ],
   },
@@ -64,53 +51,74 @@ const status = [
 
 export default function Home() {
   return (
-    <div>
+    <>
       {/* Hero */}
-      <section className="px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--text-primary)] leading-[1.08] tracking-tight">
-            Your own private network, joined to a global mesh
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            Alpha Protocol lets a person or an organisation run a secure network on hardware they own, then connect it to other networks with no company in the middle.
-          </p>
-          <div className="mt-9 flex flex-col sm:flex-row gap-4">
-            <a href="#join" className="btn-primary text-center">Join the community</a>
-            <a href={GO_URL} className="btn-secondary text-center">Open Alpha GO</a>
+      <section className="wrap pb-16 pt-12 md:pb-24 md:pt-20">
+        <h1 className="max-w-5xl">Your own private network, joined to a global mesh</h1>
+        <div className="mt-10 grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <p className="lede">
+              Alpha Protocol Network connects your devices directly to each other on hardware you own. Networks then link into a wider mesh, so people and organisations can reach one another with no company in the middle.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/join" className="btn">Join the community</Link>
+              <Link href="/network" className="btn btn-ghost">See how it works</Link>
+            </div>
+            <p className="mt-6 text-sm text-[var(--faint)]">
+              Pre-launch. <Link href="#status" className="link">See what works today</Link>.
+            </p>
+          </div>
+          <IslandsDiagram />
+        </div>
+      </section>
+
+      {/* The idea */}
+      <section className="section">
+        <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.25fr]">
+          <h2>The internet runs through a few companies. This does not.</h2>
+          <div className="space-y-5 text-[#c6cad3]">
+            <p>
+              Almost everything you send passes through a provider who can see who you talk to, when, and often what you say. Alpha Protocol is built so that any person or organisation can connect devices directly and exchange data without a central party observing who talks to whom, what they exchange, or that they take part at all.
+            </p>
+            <p>
+              The network is made of <strong className="font-semibold text-[var(--text)]">islands</strong>: a home, an office or an event running its own local mesh, which keeps working when the internet does not. Islands reach each other over an <strong className="font-semibold text-[var(--text)]">encrypted overlay</strong> that rides on whatever connection exists. As islands grow and multiply, less traffic touches the public internet, and what does is unreadable to it.
+            </p>
+            <p>
+              The people who run nodes carry traffic for everyone else, and the network pays them for it in VIBE.
+            </p>
+            <Link href="/network" className="link inline-block">Read how the network works</Link>
           </div>
         </div>
       </section>
 
-      {/* TOKEN2049 */}
-      <section className="px-4 sm:px-6 pb-16">
-        <a
-          href={GO_URL}
-          className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[var(--gold)]/50 bg-[var(--gold)]/[0.07] p-6 hover:border-[var(--gold)] transition-colors"
-        >
-          <div>
-            <p className="text-lg font-semibold text-[var(--text-primary)]">In Singapore for TOKEN2049?</p>
-            <p className="text-[var(--text-secondary)] mt-1">
-              Alpha GO puts more than 400 side events on one map and shows what is on right now. Free, 5 to 11 October.
-            </p>
+      {/* Who it is for */}
+      <section className="section">
+        <div className="wrap">
+          <h2>Who it is for</h2>
+          <div className="rows mt-10">
+            {audiences.map((a) => (
+              <Link key={a.id} href={`/use-cases#${a.id}`} className="row">
+                <h3>{a.title}</h3>
+                <p className="muted max-w-2xl">{a.body}</p>
+                <span className="row-go">Read more</span>
+              </Link>
+            ))}
           </div>
-          <span className="shrink-0 font-semibold text-[var(--gold)]">Open the map</span>
-        </a>
+        </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">How it works</h2>
-          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+      {/* How you get on */}
+      <section className="section">
+        <div className="wrap">
+          <h2>How you get on it</h2>
+          <ol className="mt-10 grid gap-10 md:grid-cols-3">
             {steps.map((s, i) => (
-              <li key={s.title}>
-                <span className="text-sm font-semibold text-[var(--alpha-accent)]">Step {i + 1}</span>
-                <h3 className="mt-2 text-lg font-semibold text-[var(--text-primary)]">{s.title}</h3>
-                <p className="mt-2 text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
+              <li key={s.title} className="border-t border-[var(--line)] pt-5">
+                <p className="text-sm font-medium text-[var(--gold-hi)]">Step {i + 1}</p>
+                <h3 className="mt-2">{s.title}</h3>
+                <p className="muted mt-2">{s.body}</p>
                 {s.link && (
-                  <a href={s.link.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-semibold text-[var(--alpha-accent)] hover:underline">
-                    {s.link.label}
-                  </a>
+                  <a href={s.link.href} target="_blank" rel="noopener noreferrer" className="link mt-3 inline-block text-sm">{s.link.label}</a>
                 )}
               </li>
             ))}
@@ -118,90 +126,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Who it is for */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Who it is for</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {audiences.map((a) => (
-              <div key={a.title} className="panel">
-                <h3 className="font-semibold text-[var(--text-primary)]">{a.title}</h3>
-                <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{a.body}</p>
-              </div>
-            ))}
+      {/* Alpha GO */}
+      <section className="section">
+        <div className="wrap grid items-center gap-12 md:grid-cols-[1fr_auto]">
+          <div>
+            <h2>Alpha GO, live in Singapore this week</h2>
+            <p className="lede mt-5">
+              Alpha GO is the app for the network. For TOKEN2049 week it runs as a free web demo: more than 400 side events on one map, showing what is on right now and what starts next.
+            </p>
+            <ul className="mt-6 space-y-2.5 text-[#c6cad3]">
+              <li className="border-l border-[var(--gold-dim)] pl-4">Move the clock to see where the city will be busy tonight.</li>
+              <li className="border-l border-[var(--gold-dim)] pl-4">Register for events without leaving the app.</li>
+              <li className="border-l border-[var(--gold-dim)] pl-4">Check in at venues to earn testnet VIBE.</li>
+            </ul>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href={GO_URL} className="btn">Open Alpha GO</a>
+              <a href={`${GO_URL}/vibe`} className="btn btn-ghost">Get testnet VIBE</a>
+            </div>
+          </div>
+          <div className="mx-auto flex w-full max-w-[26rem] items-start gap-4">
+            <div className="phone w-1/2">
+              <Image src="/alpha-go-map.png" alt="Alpha GO map of Singapore with clusters of events that are on now" width={780} height={1600} />
+            </div>
+            <div className="phone mt-10 w-1/2">
+              <Image src="/alpha-go-list.png" alt="Alpha GO list of events grouped by on now, starting soon and later" width={780} height={1600} />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Status */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Where the project stands</h2>
-          <p className="mt-3 text-[var(--text-secondary)] max-w-2xl">
-            Alpha Protocol is pre-launch. This is what exists, what is in progress and what comes after.
+      <section id="status" className="section">
+        <div className="wrap">
+          <h2>What works today</h2>
+          <p className="lede mt-4">
+            Alpha Protocol is pre-launch. We would rather tell you exactly where it stands than let you guess.
           </p>
-          <div className="mt-8 grid gap-8 md:grid-cols-3">
+          <div className="mt-10 grid gap-10 md:grid-cols-3">
             {status.map((col) => (
-              <div key={col.label}>
-                <h3 className="font-semibold text-[var(--alpha-accent)]">{col.label}</h3>
-                <ul className="mt-3 space-y-3">
+              <div key={col.kind}>
+                <Status kind={col.kind} />
+                <ul className="mt-4 space-y-3.5">
                   {col.items.map((item) => (
-                    <li key={item} className="text-sm text-[var(--text-secondary)] leading-relaxed border-l-2 border-[var(--border-default)] pl-3">
-                      {item}
-                    </li>
+                    <li key={item} className="border-t border-[var(--line-soft)] pt-3.5 text-[0.95rem] text-[#c6cad3]">{item}</li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-          <Link href="/roadmap" className="mt-8 inline-block text-sm font-semibold text-[var(--alpha-accent)] hover:underline">
-            Read the roadmap
-          </Link>
+          <p className="mt-10">
+            <Link href="/roadmap" className="link">Read the roadmap</Link>
+            <span className="mx-3 text-[var(--faint)]">or</span>
+            <Link href="/network#limits" className="link">see what the network does not protect</Link>
+          </p>
         </div>
       </section>
 
-      {/* VIBE */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+      {/* The stack */}
+      <section className="section">
+        <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">VIBE, the network&apos;s token</h2>
-            <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
-              VIBE rewards the people whose hardware carries the network. It runs on testnet today. You can earn it by using Alpha GO, or buy it ahead of the beta network with Bitcoin, Ether or Aptos.
+            <h2>One layer of the Sovereign Stack</h2>
+            <p className="muted mt-5 max-w-md">
+              The Sovereign Stack is a set of layers, from hardware to intelligence, that no single company owns and that you can run yourself. Alpha Protocol is the layer that connects them.
             </p>
-            <p className="mt-3 text-sm text-[var(--text-muted)] leading-relaxed">
-              Testnet VIBE is for use inside the Alpha Protocol ecosystem. It is not a share or a promise of future value.
-            </p>
+            <a href="https://sovereign-stack-web.vercel.app" target="_blank" rel="noopener noreferrer" className="link mt-5 inline-block">About the Sovereign Stack</a>
           </div>
-          <div className="flex flex-col gap-3">
-            <a href={`${GO_URL}/vibe`} className="px-6 py-3.5 bg-[#22c55e] hover:bg-[#16a34a] rounded-xl font-semibold text-black text-center transition-colors">
-              Get testnet VIBE
-            </a>
-            <a href="https://www.vibe-token.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3.5 border border-[#22c55e]/40 rounded-xl font-semibold text-[#22c55e] text-center hover:bg-[#22c55e]/10 transition-colors">
-              About VIBE
-            </a>
-          </div>
+          <ul className="border-t border-[var(--line)]">
+            {STACK.map((s) => (
+              <li
+                key={s.id}
+                className={`grid gap-1 border-b border-[var(--line)] py-4 sm:grid-cols-[13rem_1fr] sm:gap-6 ${s.here ? "bg-[rgba(174,144,76,0.07)] px-4 -mx-4" : ""}`}
+              >
+                <div>
+                  {s.url ? (
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-semibold no-underline hover:text-[var(--gold-hi)]">{s.name}</a>
+                  ) : (
+                    <span className={`font-semibold ${s.here ? "text-[var(--gold-hi)]" : ""}`}>{s.name}</span>
+                  )}
+                  <span className="block text-sm text-[var(--faint)]">{s.role}</span>
+                </div>
+                <p className="muted text-[0.95rem]">{s.line}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Join */}
-      <section id="join" className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)] scroll-mt-16">
-        <div className="max-w-4xl mx-auto grid gap-10 md:grid-cols-2">
+      {/* VIBE and join */}
+      <section id="join" className="section">
+        <div className="wrap grid gap-14 lg:grid-cols-2">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Join before the beta opens</h2>
-            <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
-              The beta network starts with a small group of node operators, organisations and builders. Tell us which you are and we will bring you in when your part is ready.
+            <h2>Join before the beta opens</h2>
+            <p className="lede mt-5">
+              The network starts with a small group of node operators, organisations and builders. Tell us which you are and we will bring you in when your part is ready.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-[var(--text-secondary)]">
-              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Node operators hear first when hardware and node software ship.</li>
-              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Organisations get a conversation about their own private network.</li>
-              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Investors get the plan and a call with the team.</li>
-            </ul>
+            <div className="mt-10 border-t border-[var(--line)] pt-6">
+              <h3>VIBE, the network&apos;s token</h3>
+              <p className="muted mt-2 max-w-md">
+                VIBE pays the people whose hardware carries the network. It runs on testnet today, for use inside the Alpha Protocol ecosystem. It is not a share or a promise of future value.
+              </p>
+              <a href={`${GO_URL}/vibe`} className="link mt-3 inline-block">Earn or buy testnet VIBE in Alpha GO</a>
+            </div>
           </div>
           <div className="panel">
             <JoinForm />
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

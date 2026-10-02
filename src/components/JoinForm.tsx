@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
+import { GO_URL } from "@/lib/site";
 
 const INTERESTS = [
   "I want to run a node",
@@ -12,7 +11,7 @@ const INTERESTS = [
   "I just want updates",
 ];
 
-export default function JoinForm({ source = "website" }: { source?: string }) {
+export default function JoinForm({ source = "website", interest }: { source?: string; interest?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState("");
 
@@ -34,12 +33,12 @@ export default function JoinForm({ source = "website" }: { source?: string }) {
 
   if (state === "done") {
     return (
-      <div className="join-done" role="status">
-        <p className="text-lg font-semibold text-[var(--text-primary)]">You are on the list.</p>
-        <p className="text-[var(--text-secondary)] mt-2">
+      <div role="status">
+        <p className="text-lg font-semibold">You are on the list.</p>
+        <p className="muted mt-2">
           We will email you when the beta network opens. Until then, Alpha GO is the quickest way to see what we are building.
         </p>
-        <a href={GO_URL} className="btn-primary mt-5">Open Alpha GO</a>
+        <a href={GO_URL} className="btn mt-5">Open Alpha GO</a>
       </div>
     );
   }
@@ -58,7 +57,7 @@ export default function JoinForm({ source = "website" }: { source?: string }) {
       </div>
       <label className="join-field">
         <span>What are you here for?</span>
-        <select name="interest" defaultValue={INTERESTS[0]}>
+        <select name="interest" defaultValue={interest && INTERESTS.includes(interest) ? interest : INTERESTS[0]}>
           {INTERESTS.map((i) => <option key={i}>{i}</option>)}
         </select>
       </label>
@@ -67,11 +66,11 @@ export default function JoinForm({ source = "website" }: { source?: string }) {
         <textarea name="note" rows={3} maxLength={1000} />
       </label>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="join-hp" />
-      {error && <p className="text-[#f87171] text-sm" role="alert">{error}</p>}
-      <button className="btn-primary" disabled={state === "sending"}>
+      {error && <p className="text-sm text-[var(--danger)]" role="alert">{error}</p>}
+      <button className="btn" disabled={state === "sending"}>
         {state === "sending" ? "Sending" : "Join the community"}
       </button>
-      <p className="text-xs text-[var(--text-muted)]">
+      <p className="text-xs text-[var(--faint)]">
         We only use your email to send Alpha Protocol updates. No spam, and you can leave at any time.
       </p>
     </form>
