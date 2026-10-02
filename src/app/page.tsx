@@ -257,7 +257,7 @@ export default function Home() {
               <p className="muted mt-2 max-w-md">
                 VIBE pays the people whose hardware carries the network. It runs on testnet today, for use inside the Alpha Protocol ecosystem. It is not a share or a promise of future value.
               </p>
-              <a href={`${GO_URL}/vibe`} className="link mt-3 inline-block">Earn or buy testnet VIBE in Alpha GO</a>
+              <Link href="/vibe" className="link mt-3 inline-block">What VIBE is and how to get it</Link>
             </div>
           </div>
           <div className="panel">

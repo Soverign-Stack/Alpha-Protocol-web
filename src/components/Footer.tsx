@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GO_URL, NAV, STACK } from "@/lib/site";
+import { COMMUNITY_URL, GO_URL, MORE, NAV, STACK } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -16,13 +16,15 @@ export default function Footer() {
         <div>
           <p className="text-sm font-semibold text-[var(--text)]">Alpha Protocol</p>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {NAV.map((n) => (
+            {[...NAV, ...MORE].map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">{n.label}</Link>
               </li>
             ))}
             <li><a href={GO_URL} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Alpha GO</a></li>
-            <li><a href={`${GO_URL}/vibe`} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Testnet VIBE</a></li>
+            {COMMUNITY_URL && (
+              <li><a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Community</a></li>
+            )}
           </ul>
         </div>
 

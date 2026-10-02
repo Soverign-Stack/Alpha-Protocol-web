@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GO_URL } from "@/lib/site";
+import { CALL_URL, COMMUNITY_URL, GO_URL } from "@/lib/site";
 
 const INTERESTS = [
   "I want to run a node",
@@ -11,9 +11,10 @@ const INTERESTS = [
   "I just want updates",
 ];
 
-export default function JoinForm({ source = "website", interest }: { source?: string; interest?: string }) {
+export default function JoinForm({ source = "website", interest, cta = "Join the community" }: { source?: string; interest?: string; cta?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState("");
+  const [wantsCall, setWantsCall] = useState(false);
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +26,10 @@ export default function JoinForm({ source = "website", interest }: { source?: st
       headers: { "content-type": "application/json" },
       body: JSON.stringify(body),
     }).catch(() => null);
-    if (res?.ok) return setState("done");
+    if (res?.ok) {
+      setWantsCall(/investor|organisation/i.test(String((body as Record<string, unknown>).interest ?? "")));
+      return setState("done");
+    }
     const j = await res?.json().catch(() => null);
     setError(j?.error || "That did not go through. Check your connection and try again.");
     setState("idle");
@@ -35,10 +39,24 @@ export default function JoinForm({ source = "website", interest }: { source?: st
     return (
       <div role="status">
         <p className="text-lg font-semibold">You are on the list.</p>
-        <p className="muted mt-2">
-          We will email you when the beta network opens. Until then, Alpha GO is the quickest way to see what we are building.
-        </p>
-        <a href={GO_URL} className="btn mt-5">Open Alpha GO</a>
+        {wantsCall ? (
+          <>
+            <p className="muted mt-2">We will be in touch. If you would rather talk now, pick a time for a 20-minute call.</p>
+            <a href={CALL_URL} target="_blank" rel="noopener noreferrer" className="btn mt-5">Book a call</a>
+          </>
+        ) : (
+          <>
+            <p className="muted mt-2">
+              We will email you when the beta network opens. Until then, Alpha GO is the quickest way to see what we are building.
+            </p>
+            <a href={GO_URL} className="btn mt-5">Open Alpha GO</a>
+          </>
+        )}
+        {COMMUNITY_URL && (
+          <p className="mt-4 text-sm">
+            <a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer" className="link">Join the community chat</a>
+          </p>
+        )}
       </div>
     );
   }
@@ -68,7 +86,7 @@ export default function JoinForm({ source = "website", interest }: { source?: st
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="join-hp" />
       {error && <p className="text-sm text-[var(--danger)]" role="alert">{error}</p>}
       <button className="btn" disabled={state === "sending"}>
-        {state === "sending" ? "Sending" : "Join the community"}
+        {state === "sending" ? "Sending" : cta}
       </button>
       <p className="text-xs text-[var(--faint)]">
         We only use your email to send Alpha Protocol updates. No spam, and you can leave at any time.

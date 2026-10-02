@@ -1,11 +1,19 @@
 export const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
 
+export const CALL_URL = "https://powerclubglobal.com/discovery-call";
+/** Telegram or other community link. Shown across the site once it is set. */
+export const COMMUNITY_URL = process.env.NEXT_PUBLIC_COMMUNITY_URL || "";
+
 export const NAV = [
   { label: "How it works", href: "/network" },
   { label: "Use cases", href: "/use-cases" },
-  { label: "Build", href: "/build" },
+  { label: "VIBE", href: "/vibe" },
   { label: "Roadmap", href: "/roadmap" },
+  { label: "Investors", href: "/investors" },
 ];
+
+/** Pages that live in the footer but not the top bar. */
+export const MORE = [{ label: "Build", href: "/build" }];
 
 /**
  * The Sovereign Stack, in the order its own site presents it. `url` is omitted
