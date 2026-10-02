@@ -23,7 +23,7 @@ const facts: [string, React.ReactNode][] = [
   ["Per person", "From $25 up to 100,000 VIBE ($1,000)"],
   ["Pay with", "Bitcoin, USDT (on Ethereum) or Aptos"],
   ["Sold by", OPERATOR],
-  ["Where you hold it", "Your Alpha GO account today. Add an Aptos address and it is sent there on the testnet once on-chain delivery is switched on."],
+  ["Where you hold it", "Your Alpha GO account. Withdrawing it to your own Aptos testnet wallet, and spending it in the app, arrive with the next Alpha GO update."],
   ["Allocation and vesting", "Being finalised. Published before mainnet."],
 ];
 
