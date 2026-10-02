@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alpha Protocol - Where The Web Begins",
+    default: "Alpha Protocol: private networks, joined to a global mesh",
     template: "%s | Alpha Protocol",
   },
-  description: "Alpha Protocol is a decentralized web solution with Bitcoin incentives. Secure, private, and rewarding internet access.",
+  description: "Alpha Protocol lets a person or an organisation run a secure private network on hardware they own, then connect it to a global mesh.",
   keywords: ["decentralized", "VPN", "mesh network", "Bitcoin", "privacy", "P2P", "sovereign stack"],
 };
 

@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
+
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Download", href: "/download" },
   { label: "Learn", href: "/learn" },
   { label: "Develop", href: "/develop" },
   { label: "Roadmap", href: "/roadmap" },
+  { label: "Alpha GO", href: GO_URL },
 ];
 
 const ecosystemProjects = [
@@ -219,8 +220,8 @@ export default function Header() {
 
           {/* CTA */}
           <div className="flex items-center gap-4">
-            <Link href="/download" className="btn-primary text-sm">
-              Download
+            <Link href="/#join" className="btn-primary text-sm">
+              Join
             </Link>
           </div>
         </div>
@@ -337,11 +338,11 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/download"
+              href="/#join"
               onClick={() => setMobileMenuOpen(false)}
               className="block btn-primary text-center mt-4"
             >
-              Download
+              Join the community
             </Link>
           </nav>
         </div>

@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-[var(--text-secondary)] text-sm">
-              Decentralized web solution with Bitcoin incentives. Secure, private, rewarding.
+              Private networks you own, joined to a global mesh.
             </p>
           </div>
 
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors">
-                  PowerClub Global
+                  Powerclub Global
                 </a>
               </li>
               <li>

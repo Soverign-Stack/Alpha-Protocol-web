@@ -1,297 +1,204 @@
 import Link from "next/link";
+import JoinForm from "@/components/JoinForm";
 
-const betaProducts = [
-  {
-    name: "Alpha Go",
-    tagline: "Mobile VPN + Rewards",
-    description: "Secure mobile browsing with built-in Bitcoin rewards for your bandwidth contribution.",
-    url: "#",
-    color: "#dc2626",
-  },
-  {
-    name: "Omega Wireless",
-    tagline: "Hardware Mesh Nodes",
-    description: "Deploy physical mesh network nodes and earn passive income.",
-    url: "https://omega-wireless.vercel.app",
-    color: "#f97316",
-  },
-  {
-    name: "Spectrum Galactic",
-    tagline: "Satellite Global Reach",
-    description: "Global satellite connectivity bringing Alpha Protocol to every corner of Earth.",
-    url: "https://spectrum-galactic.vercel.app",
-    color: "#8b5cf6",
-  },
-];
+const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
 
+// In order: you need a node before a network, and a network before you can join the mesh.
 const steps = [
   {
-    step: 1,
-    title: "DOWNLOAD & INSTALL",
-    description: "Download and install the Alpha Protocol Network (APN) to your device",
-    platforms: ["macOS", "Windows", "Linux"],
+    title: "Start with a node",
+    body: "A node is a small box you own. Plug it in at home, in the office or at an event and it becomes your entry point to the network.",
+    link: { href: "https://omegawireless.xyz", label: "See Omega Wireless nodes" },
   },
   {
-    step: 2,
-    title: "CONFIGURE YOUR CONNECTION",
-    description: "Host your own private network or connect to Alpha Protocol's decentralized network",
+    title: "Run your own private network",
+    body: "Your devices and your team connect through your node. What passes between them is encrypted, and it stays on hardware you control rather than on someone else's servers.",
   },
   {
-    step: 3,
-    title: "SECURE & EARN",
-    description: "Secure your systems and earn rewards for your contributions to the network",
-    highlight: "ENJOY!",
+    title: "Join the global mesh",
+    body: "Link your network to others when you choose to. Nodes carry traffic for each other, and the capacity you contribute earns VIBE.",
   },
 ];
 
-const networkStats = [
+const audiences = [
   {
-    title: "TOTAL NETWORK NODES",
-    value: "11",
-    suffix: "",
-    icon: "devices",
+    title: "For people",
+    body: "A private connection for your household and your devices that does not depend on a single provider, plus rewards for the capacity you share.",
   },
   {
-    title: "NETWORK BANDWIDTH",
-    value: "11.11",
-    suffix: "GB/S",
-    icon: "speed",
+    title: "For organisations",
+    body: "A network for your team, sites and machines that you deploy and control yourself, with the option to reach partners over the mesh.",
   },
   {
-    title: "CLOUD DATABASE",
-    value: "5,000",
-    suffix: "TB",
-    icon: "cloud",
+    title: "For node operators",
+    body: "Run nodes where coverage is needed, relay for the network and earn for the work your hardware does.",
+  },
+];
+
+const status = [
+  {
+    label: "Working today",
+    items: [
+      "The mesh core: nodes find each other, prove who they are and exchange encrypted traffic",
+      "A desktop client, in testing with our own team",
+      "Alpha GO, live as a public demo for TOKEN2049 week in Singapore",
+    ],
+  },
+  {
+    label: "Being built now",
+    items: [
+      "Private network controls, so a person or an organisation decides who is on their network",
+      "Direct links between networks across the internet",
+      "The software that runs on Omega Wireless nodes",
+    ],
+  },
+  {
+    label: "Next",
+    items: [
+      "A beta network with the first group of node operators",
+      "Testnet VIBE rewards for relaying",
+      "Alpha GO as a full mobile app",
+    ],
   },
 ];
 
 export default function Home() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--text-primary)] tracking-widest mb-4">
-            WHERE THE WEB
+      {/* Hero */}
+      <section className="px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--text-primary)] leading-[1.08] tracking-tight">
+            Your own private network, joined to a global mesh
           </h1>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gradient tracking-[0.2em] mb-8">
-            B E G I N S
-          </h2>
-          <p className="text-[var(--text-secondary)] text-sm sm:text-base tracking-wider max-w-xl mx-auto mb-10 leading-relaxed">
-            ALPHA PROTOCOL IS A DECENTRALIZED WEB SOLUTION WITH BITCOIN INCENTIVES
+          <p className="mt-6 text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
+            Alpha Protocol lets a person or an organisation run a secure network on hardware they own, then connect it to other networks with no company in the middle.
           </p>
-          <Link
-            href="/download"
-            className="btn-primary inline-flex items-center gap-3"
-          >
-            <span>Download for Your Platform</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-          </Link>
-
-          {/* Beta Apps */}
-          <div className="mt-16 card">
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <span className="px-3 py-1 rounded-full bg-[var(--alpha-primary)]/20 text-[var(--alpha-accent)] text-xs tracking-wider font-medium">
-                BETA APPS
-              </span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {betaProducts.map((product) => (
-                <a
-                  key={product.name}
-                  href={product.url}
-                  target={product.url === "#" ? "_self" : "_blank"}
-                  rel="noopener noreferrer"
-                  className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-default)] hover:border-[var(--alpha-accent)] transition-all text-left"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center"
-                      style={{ background: `${product.color}20` }}
-                    >
-                      <div className="w-4 h-4 rounded-full" style={{ background: product.color }} />
-                    </div>
-                    <div>
-                      <h3 className="text-[var(--text-primary)] font-medium">{product.name}</h3>
-                      <p className="text-xs" style={{ color: product.color }}>{product.tagline}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                    {product.description}
-                  </p>
-                </a>
-              ))}
-            </div>
+          <div className="mt-9 flex flex-col sm:flex-row gap-4">
+            <a href="#join" className="btn-primary text-center">Join the community</a>
+            <a href={GO_URL} className="btn-secondary text-center">Open Alpha GO</a>
           </div>
         </div>
       </section>
 
-      {/* Safeguard Section */}
-      <section className="py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-light text-[var(--text-primary)] tracking-widest mb-2">
-            SAFEGUARD YOUR
-          </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient tracking-[0.2em] mb-12">
-            C O N N E C T I O N
-          </h3>
+      {/* TOKEN2049 */}
+      <section className="px-4 sm:px-6 pb-16">
+        <a
+          href={GO_URL}
+          className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[var(--gold)]/50 bg-[var(--gold)]/[0.07] p-6 hover:border-[var(--gold)] transition-colors"
+        >
+          <div>
+            <p className="text-lg font-semibold text-[var(--text-primary)]">In Singapore for TOKEN2049?</p>
+            <p className="text-[var(--text-secondary)] mt-1">
+              Alpha GO puts more than 400 side events on one map and shows what is on right now. Free, 5 to 11 October.
+            </p>
+          </div>
+          <span className="shrink-0 font-semibold text-[var(--gold)]">Open the map</span>
+        </a>
+      </section>
 
-          <div className="space-y-6">
-            {steps.map((item) => (
-              <div
-                key={item.step}
-                className="p-8 card text-center"
-              >
-                <div className="w-12 h-12 rounded-full bg-[var(--alpha-primary)]/20 flex items-center justify-center mx-auto mb-5">
-                  <span className="text-xl font-bold text-[var(--alpha-accent)]">{item.step}</span>
-                </div>
-                <h4 className="text-lg font-semibold text-[var(--text-primary)] tracking-wider mb-3">
-                  {item.title}
-                </h4>
-                <p className="text-[var(--text-secondary)] mb-4">
-                  {item.description}
-                </p>
-                {item.platforms && (
-                  <div className="flex items-center justify-center gap-6 mt-4">
-                    {item.platforms.map((platform) => (
-                      <span key={platform} className="text-xs text-[var(--text-muted)] uppercase tracking-wider">
-                        {platform}
-                      </span>
-                    ))}
-                  </div>
+      {/* How it works */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">How it works</h2>
+          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+            {steps.map((s, i) => (
+              <li key={s.title}>
+                <span className="text-sm font-semibold text-[var(--alpha-accent)]">Step {i + 1}</span>
+                <h3 className="mt-2 text-lg font-semibold text-[var(--text-primary)]">{s.title}</h3>
+                <p className="mt-2 text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
+                {s.link && (
+                  <a href={s.link.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-semibold text-[var(--alpha-accent)] hover:underline">
+                    {s.link.label}
+                  </a>
                 )}
-                {item.highlight && (
-                  <p className="text-xl font-bold text-[var(--alpha-accent)] tracking-widest mt-4">
-                    {item.highlight}
-                  </p>
-                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Who it is for */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Who it is for</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {audiences.map((a) => (
+              <div key={a.title} className="panel">
+                <h3 className="font-semibold text-[var(--text-primary)]">{a.title}</h3>
+                <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{a.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Network Snapshot Section */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-light text-[var(--text-primary)] tracking-widest mb-2">
-                NETWORK
-              </h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient tracking-[0.15em] mb-6">
-                SNAPSHOT
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-8">
-                Real-time statistics from the Alpha Protocol decentralized network.
-              </p>
-              <Link href="/download" className="btn-primary">
-                Download Now
-              </Link>
-            </div>
-            <div className="grid gap-4">
-              {networkStats.map((stat, index) => (
-                <div key={index} className="card p-5 text-center">
-                  <p className="text-xs text-[var(--text-muted)] tracking-wider mb-2">{stat.title}</p>
-                  <div className="flex items-end justify-center gap-1">
-                    <span className="text-3xl font-bold text-[var(--text-primary)]">{stat.value}</span>
-                    {stat.suffix && (
-                      <span className="text-sm text-[var(--alpha-accent)] mb-1">{stat.suffix}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* VIBE Token Section */}
-      <section className="py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
+      {/* Status */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)]">
         <div className="max-w-4xl mx-auto">
-          <div className="card p-8 sm:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#22c55e]/10 via-transparent to-[var(--alpha-primary)]/10" />
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#22c55e] flex items-center justify-center">
-                  <span className="text-xl font-bold text-black">V</span>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-[#22c55e]/20 text-[#22c55e] text-xs tracking-wider font-medium">
-                  ECOSYSTEM TOKEN
-                </span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Where the project stands</h2>
+          <p className="mt-3 text-[var(--text-secondary)] max-w-2xl">
+            Alpha Protocol is pre-launch. This is what exists, what is in progress and what comes after.
+          </p>
+          <div className="mt-8 grid gap-8 md:grid-cols-3">
+            {status.map((col) => (
+              <div key={col.label}>
+                <h3 className="font-semibold text-[var(--alpha-accent)]">{col.label}</h3>
+                <ul className="mt-3 space-y-3">
+                  {col.items.map((item) => (
+                    <li key={item} className="text-sm text-[var(--text-secondary)] leading-relaxed border-l-2 border-[var(--border-default)] pl-3">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            ))}
+          </div>
+          <Link href="/roadmap" className="mt-8 inline-block text-sm font-semibold text-[var(--alpha-accent)] hover:underline">
+            Read the roadmap
+          </Link>
+        </div>
+      </section>
 
-              <h2 className="text-2xl sm:text-3xl font-light text-[var(--text-primary)] tracking-widest mb-2 text-center">
-                TRADE
-              </h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[0.2em] mb-6 text-center text-[#22c55e]">
-                VIBE TOKENS
-              </h3>
-
-              <p className="text-[var(--text-secondary)] max-w-xl mx-auto mb-8 text-center">
-                VIBE is the native reward token of the Sovereign Stack ecosystem. Earn VIBE by contributing bandwidth, running nodes, and participating in the network.
-              </p>
-
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-default)] text-center">
-                  <p className="text-2xl font-bold text-[#22c55e]">$0.001</p>
-                  <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mt-1">Current Price</p>
-                </div>
-                <div className="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-default)] text-center">
-                  <p className="text-2xl font-bold text-[var(--text-primary)]">1B</p>
-                  <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mt-1">Total Supply</p>
-                </div>
-                <div className="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-default)] text-center">
-                  <p className="text-2xl font-bold text-[#22c55e]">LIVE</p>
-                  <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mt-1">Status</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="https://vibe-token.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-xl font-semibold text-black transition-all"
-                >
-                  Buy VIBE Tokens
-                </a>
-                <a
-                  href="https://vibe-token.vercel.app/tokenomics"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 border border-[#22c55e]/30 rounded-xl font-semibold text-[#22c55e] hover:bg-[#22c55e]/10 transition-all"
-                >
-                  View Tokenomics
-                </a>
-              </div>
-            </div>
+      {/* VIBE */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">VIBE, the network&apos;s token</h2>
+            <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
+              VIBE rewards the people whose hardware carries the network. It runs on testnet today. You can earn it by using Alpha GO, or buy it ahead of the beta network with Bitcoin, Ether or Aptos.
+            </p>
+            <p className="mt-3 text-sm text-[var(--text-muted)] leading-relaxed">
+              Testnet VIBE is for use inside the Alpha Protocol ecosystem. It is not a share or a promise of future value.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3">
+            <a href={`${GO_URL}/vibe`} className="px-6 py-3.5 bg-[#22c55e] hover:bg-[#16a34a] rounded-xl font-semibold text-black text-center transition-colors">
+              Get testnet VIBE
+            </a>
+            <a href="https://www.vibe-token.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3.5 border border-[#22c55e]/40 rounded-xl font-semibold text-[#22c55e] text-center hover:bg-[#22c55e]/10 transition-colors">
+              About VIBE
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Join Section */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-light text-[var(--text-primary)] tracking-widest mb-2">
-            JOIN THE ALPHA
-          </h2>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient tracking-[0.2em] mb-8">
-            COMMUNITY
-          </h3>
-          <p className="text-[var(--text-secondary)] max-w-xl mx-auto mb-10">
-            Be part of the decentralized future. Contribute to the network, earn rewards, and help build a more private and secure internet for everyone.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/download" className="btn-primary">
-              Get Started
-            </Link>
-            <Link href="/develop" className="btn-secondary">
-              For Developers
-            </Link>
+      {/* Join */}
+      <section id="join" className="py-16 sm:py-20 px-4 sm:px-6 bg-[var(--bg-surface)] scroll-mt-16">
+        <div className="max-w-4xl mx-auto grid gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Join before the beta opens</h2>
+            <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
+              The beta network starts with a small group of node operators, organisations and builders. Tell us which you are and we will bring you in when your part is ready.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm text-[var(--text-secondary)]">
+              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Node operators hear first when hardware and node software ship.</li>
+              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Organisations get a conversation about their own private network.</li>
+              <li className="border-l-2 border-[var(--alpha-accent)] pl-3">Investors get the plan and a call with the team.</li>
+            </ul>
+          </div>
+          <div className="panel">
+            <JoinForm />
           </div>
         </div>
       </section>
