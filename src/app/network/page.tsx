@@ -87,15 +87,15 @@ export default function NetworkPage() {
           <section id="islands">
             <div className="doc-head">
               <h2>Islands</h2>
-              <Status kind="working" label="Working on local networks" />
+              <Status kind="building" label="Working in the core library" />
             </div>
             <div className="prose-w">
               <p>
-                An island is a group of devices close enough to reach each other directly: a household, an office floor, a venue, a street. Devices on an island find each other without any outside server, confirm each other&apos;s identity and exchange encrypted traffic. If the internet connection goes down, the island keeps working.
+                An island is a group of devices close enough to reach each other directly: a household, an office floor, a venue, a street. Devices on an island are designed to find each other without any outside server and exchange traffic over encrypted connections, so that the island keeps working if the internet connection goes down. In our core library this works today on a local network: nodes discover each other, set up an encrypted connection and exchange signed messages. The packaged node program does not use it yet. Today it finds other nodes through our relay, and wiring the local mesh into it is the first job.
               </p>
               <h3>What carries an island</h3>
               <ul>
-                <li>Wi-Fi and wired local networks. This works today.</li>
+                <li>Wi-Fi and wired local networks. Working in the core library, not yet in the packaged node.</li>
                 <li>Bluetooth and direct Wi-Fi between phones. Planned.</li>
                 <li>Long-range, low-power radio between nodes: Wi-Fi HaLow for the links that carry real traffic, and LoRa for small messages such as presence and emergency traffic. Planned, with Omega Wireless hardware.</li>
               </ul>
@@ -119,11 +119,11 @@ export default function NetworkPage() {
             </div>
             <div className="prose-w">
               <p>
-                The overlay links islands to each other. Traffic between islands is encrypted from end to end, so whatever carries it sees only that data is moving.
+                The overlay links islands to each other. It is designed so that traffic between islands is encrypted from end to end, and whatever carries it sees only that data is moving.
               </p>
               <h3>Today</h3>
               <p>
-                Two nodes in different places connect through a relay that we operate. The relay cannot read the traffic, but it is a single point that every long-distance connection passes through. Removing it is the first job of the beta.
+                Two nodes in different places connect through a relay that we operate. Today the relay can read what passes through it, because messages sent that way are not yet encrypted from end to end. It is also a single point that every long-distance connection passes through. Encrypting that path, and then removing the single relay, are the first jobs of the beta.
               </p>
               <h3>As designed</h3>
               <ul>
@@ -194,15 +194,15 @@ export default function NetworkPage() {
           <section id="encryption">
             <div className="doc-head">
               <h2>Encryption</h2>
-              <Status kind="working" />
+              <Status kind="building" label="Working between connected nodes" />
             </div>
             <div className="prose-w">
               <p>
-                Traffic is encrypted between the two ends of a conversation, not just between you and the next hop. Nodes that relay a message cannot read it.
+                The design encrypts traffic between the two ends of a conversation, not just between you and the next hop, so that nodes that relay a message cannot read it. Today the core library encrypts each connection between two nodes. Encryption between the two ends, across relays, is being built.
               </p>
               <ul>
-                <li>Key exchange uses X25519, encryption uses ChaCha20-Poly1305 and hashing uses BLAKE3.</li>
-                <li>Connections between nodes are set up with the Noise protocol.</li>
+                <li>Connections between nodes are set up with the Noise protocol, with X25519 key exchange and ChaCha20-Poly1305 encryption.</li>
+                <li>Being built: encryption between the two ends of a conversation, including traffic that passes through a relay.</li>
                 <li>Being built: keys that change continually within a session, so that a key stolen later cannot unlock earlier traffic.</li>
               </ul>
             </div>

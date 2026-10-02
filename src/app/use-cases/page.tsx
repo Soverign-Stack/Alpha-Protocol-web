@@ -27,7 +27,7 @@ const cases: Case[] = [
     summary: "A private network for your own devices, and a way to reach other people without a platform in between.",
     paragraphs: [
       "Your phone, laptop and home devices connect to each other directly. Messages and files move between them without passing through a company that can read or record them, and the network at home keeps working when the internet connection drops.",
-      "When you reach someone on another network, the two ends are encrypted to each other. The nodes that carry the traffic cannot read it.",
+      "By design, when you reach someone on another network the two ends are encrypted to each other, and the nodes that carry the traffic cannot read it. Today, long-distance traffic passes through our relay and is not yet encrypted from end to end.",
     ],
     need: ["A phone or computer to use the network", "A node at home if you want to relay for others and earn"],
     status: [

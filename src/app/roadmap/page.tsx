@@ -13,7 +13,7 @@ const stages = [
     when: "Now",
     title: "A working core and a public demo",
     items: [
-      "Nodes on a local network find each other and exchange encrypted traffic",
+      "In the core library, nodes on a local network find each other and connect over encrypted links",
       "Links across the internet, through a relay we operate",
       "VIBE on the Aptos testnet",
       "Alpha GO live as a web demo for TOKEN2049 week in Singapore",
@@ -24,6 +24,7 @@ const stages = [
     when: "Next",
     title: "The seed network",
     items: [
+      "The packaged node running the local mesh directly, and end-to-end encryption through the relay",
       "Installers for the desktop client",
       "Direct links between networks, with no single relay in the path",
       "Membership that does not reveal who you are",

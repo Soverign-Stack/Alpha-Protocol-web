@@ -10,16 +10,16 @@ export const metadata: Metadata = {
 
 const modules: [string, string][] = [
   ["Identity", "Keys generated on the device from 12 words, and the storage that keeps them there."],
-  ["Encryption", "End-to-end encryption between peers: X25519, ChaCha20-Poly1305 and BLAKE3."],
-  ["Mesh", "Discovery on the local network, a distributed lookup table and publish-and-subscribe messaging, built on libp2p with Noise-secured connections."],
-  ["Relay", "A fallback path for nodes that cannot reach each other directly."],
-  ["Wire format", "The message format nodes use to talk to each other."],
-  ["Rewards", "Tracking of the work a node does and the rewards owed for it."],
+  ["Encryption", "Noise-secured connections between directly connected nodes, with X25519 and ChaCha20-Poly1305. End-to-end encryption across relays is being built."],
+  ["Mesh", "Discovery on the local network, a distributed lookup table and publish-and-subscribe messaging, built on libp2p with Noise-secured connections. It works in the library. The packaged node does not run it yet."],
+  ["Relay", "A relay path for nodes that cannot reach each other directly. Today it carries all long-distance traffic, and that traffic is not yet encrypted from end to end."],
+  ["Wire format", "A draft of the message format nodes will use to talk to each other. It is not yet used on the wire."],
+  ["Rewards", "Early tracking of node activity, based on what each node reports about itself. Rewards on receipts signed by the other party, and payouts, are being built."],
 ];
 
 const coming = [
   { title: "A node you can run", body: "Installers for the desktop client: create an identity, run a node, see what it has relayed." },
-  { title: "Open source", body: "We intend to publish the protocol source with the beta network, so that anyone can read it, audit it and run it." },
+  { title: "Open source", body: "An early version of the core is already in a public repository, without a licence yet. We intend to publish a cleaned-up release under an open licence with the beta network, so that anyone can read it, audit it and run it." },
   { title: "An interface for applications", body: "A stable way for an application to send and receive over the mesh, and documentation to go with it." },
   { title: "Services between nodes", body: "A way for nodes to offer computation, data and agents to each other, priced in VIBE." },
 ];

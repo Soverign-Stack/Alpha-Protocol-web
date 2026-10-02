@@ -68,7 +68,7 @@ const compare = [
 ];
 
 const exists = [
-  "A working mesh core: nodes on a local network find each other, prove who they are and exchange encrypted traffic",
+  "A mesh core library in Rust: nodes on a local network find each other and exchange traffic over encrypted connections. It is not yet wired into the packaged node",
   "Links across the internet through a relay we operate",
   "VIBE on the Aptos testnet since February 2026, with a public contract anyone can inspect",
   "Alpha GO, a public web demo, live for TOKEN2049 week in Singapore",

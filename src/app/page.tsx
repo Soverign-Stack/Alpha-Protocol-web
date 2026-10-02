@@ -18,7 +18,7 @@ const audiences = [
 // In order: a node comes first, then your own network, then the wider mesh.
 const steps = [
   { title: "Start with a node", body: "A node is a small box you own. It is your entry point: plug it in at home, in the office or at an event.", link: { href: "https://www.omegawireless.xyz", label: "Omega Wireless hardware" } },
-  { title: "Run your own network", body: "Your devices connect through your node. Traffic between them is encrypted end to end and stays on hardware you control." },
+  { title: "Run your own network", body: "Your devices connect through your node. Traffic between them is designed to be encrypted end to end and to stay on hardware you control." },
   { title: "Join the mesh", body: "Link your network to others when you choose to. Nodes carry traffic for each other, and that work earns VIBE." },
 ];
 
@@ -26,7 +26,7 @@ const status = [
   {
     kind: "working" as const,
     items: [
-      "Nodes on the same local network find each other, prove who they are and exchange encrypted traffic",
+      "In the core library, nodes on the same local network find each other and exchange traffic over encrypted connections",
       "Links across the internet, through a relay we operate",
       "VIBE on the Aptos testnet",
       "Alpha GO, live as a public demo for TOKEN2049 week",
@@ -35,6 +35,7 @@ const status = [
   {
     kind: "building" as const,
     items: [
+      "The packaged node running the local mesh directly, and end-to-end encryption for traffic through the relay",
       "Direct links across the internet, with no single relay in the path",
       "Membership that proves you belong without saying who you are",
       "Private domains for organisations",
