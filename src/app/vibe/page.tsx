@@ -19,7 +19,7 @@ const facts: [string, React.ReactNode][] = [
     </a>,
   ],
   ["Demo sale price", "$0.01 per VIBE, which is 100 VIBE per $1"],
-  ["On sale now", "1,000,000 VIBE, a small first allocation for the TOKEN2049 demo"],
+  ["Set aside for this event", "1,000,000 VIBE for the TOKEN2049 demo. It covers the sale and the rewards for signing up, checking in and inviting people."],
   ["Per person", "From $25 up to 100,000 VIBE ($1,000)"],
   ["Pay with", "Bitcoin, USDT (on Ethereum) or Aptos"],
   ["Sold by", OPERATOR],
