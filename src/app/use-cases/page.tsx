@@ -33,7 +33,8 @@ const cases: Case[] = [
     status: [
       { kind: "working", text: "Alpha GO web demo" },
       { kind: "building", text: "Desktop client, in testing with our team" },
-      { kind: "planned", text: "Alpha GO mobile app" },
+      { kind: "building", text: "Alpha GO for Android, in testing" },
+      { kind: "planned", text: "Alpha GO for iPhone" },
     ],
     join: { as: "updates", label: "Get told when the apps are ready" },
     image: { alt: "A family living room in the evening with a small network node on a shelf", brief: "A lived-in living room in the evening, a phone and laptop in use on the sofa, a small black node with a red LED on the bookshelf behind." },

@@ -39,6 +39,7 @@ const status = [
       "Membership that proves you belong without saying who you are",
       "Private domains for organisations",
       "The software that runs on Omega Wireless nodes",
+      "Alpha GO for Android, in testing and open to download",
     ],
   },
   {
@@ -46,7 +47,7 @@ const status = [
     items: [
       "A seed network of independent node operators earning testnet VIBE for relaying",
       "Radio links between nodes where there is no internet",
-      "Alpha GO as a full mobile app",
+      "Alpha GO for iPhone, and Alpha GO running over the mesh",
     ],
   },
 ];

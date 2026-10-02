@@ -1,5 +1,13 @@
 export const GO_URL = process.env.NEXT_PUBLIC_GO_URL || "https://go.alphaprotocol.network";
 
+/** The company that operates the sites, Alpha GO and the VIBE demo sale today. */
+export const OPERATOR = "Powerclub Global LLC";
+export const CONTACT_EMAIL = "apn@powerclubglobal.com";
+
+/** VIBE on the Aptos testnet. */
+export const VIBE_CONTRACT = "0x24cb561c64c32942eb8600d5135f0185c23bcd06cd8cf33422ce2f9b77d65388";
+export const VIBE_EXPLORER = `https://explorer.aptoslabs.com/account/${VIBE_CONTRACT}/modules/code/vibe_token?network=testnet`;
+
 export const CALL_URL = "https://powerclubglobal.com/discovery-call";
 /** Telegram or other community link. Shown across the site once it is set. */
 export const COMMUNITY_URL = process.env.NEXT_PUBLIC_COMMUNITY_URL || "";

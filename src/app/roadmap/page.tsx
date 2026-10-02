@@ -17,6 +17,7 @@ const stages = [
       "Links across the internet, through a relay we operate",
       "VIBE on the Aptos testnet",
       "Alpha GO live as a web demo for TOKEN2049 week in Singapore",
+      "Alpha GO for Android, in testing and open to download",
     ],
   },
   {
@@ -36,7 +37,7 @@ const stages = [
       "Omega Wireless nodes that arrive ready to join",
       "Private domains for organisations, and tunnels between their sites",
       "Phone-to-phone links and long-range radio between nodes",
-      "Alpha GO as a full mobile app",
+      "Alpha GO running over the mesh, and an iPhone app",
     ],
   },
   {

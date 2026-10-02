@@ -11,7 +11,7 @@ const INTERESTS = [
   "I just want updates",
 ];
 
-export default function JoinForm({ source = "website", interest, cta = "Join the community" }: { source?: string; interest?: string; cta?: string }) {
+export default function JoinForm({ source = "website", interest, cta = "Join the community", note }: { source?: string; interest?: string; cta?: string; note?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState("");
   const [wantsCall, setWantsCall] = useState(false);
@@ -89,7 +89,7 @@ export default function JoinForm({ source = "website", interest, cta = "Join the
         {state === "sending" ? "Sending" : cta}
       </button>
       <p className="text-xs text-[var(--faint)]">
-        We only use your email to send Alpha Protocol updates. No spam, and you can leave at any time.
+        {note ?? "We only use your email to send Alpha Protocol updates. No spam, and you can leave at any time."}
       </p>
     </form>
   );

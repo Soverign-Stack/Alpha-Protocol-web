@@ -3,7 +3,7 @@ import Link from "next/link";
 import JoinForm from "@/components/JoinForm";
 import MeshField from "@/components/MeshField";
 import Status from "@/components/Status";
-import { CALL_URL, GO_URL } from "@/lib/site";
+import { CALL_URL, CONTACT_EMAIL, GO_URL, OPERATOR, VIBE_EXPLORER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Investors",
@@ -70,8 +70,9 @@ const compare = [
 const exists = [
   "A working mesh core: nodes on a local network find each other, prove who they are and exchange encrypted traffic",
   "Links across the internet through a relay we operate",
-  "VIBE on the Aptos testnet since February 2026",
+  "VIBE on the Aptos testnet since February 2026, with a public contract anyone can inspect",
   "Alpha GO, a public web demo, live for TOKEN2049 week in Singapore",
+  "Alpha GO for Android, in testing, with a signed public release",
   "Omega Wireless hardware catalogue and store",
   "The management software for the stack, in daily production use by the team that builds it",
 ];
@@ -187,6 +188,10 @@ export default function InvestorsPage() {
               <Link href="/roadmap" className="link">What comes next</Link>
               <span className="mx-3 text-[var(--faint)]">or</span>
               <a href={GO_URL} className="link">try Alpha GO</a>
+              <span className="mx-3 text-[var(--faint)]">or</span>
+              <a href={VIBE_EXPLORER} target="_blank" rel="noopener noreferrer" className="link">see VIBE on chain</a>
+              <span className="mx-3 text-[var(--faint)]">or</span>
+              <a href="https://github.com/AlphaProtocolLabs/alpha-go" target="_blank" rel="noopener noreferrer" className="link">read the Alpha GO code</a>
             </p>
           </div>
         </div>
@@ -202,11 +207,14 @@ export default function InvestorsPage() {
               Alpha Protocol was founded by <strong className="font-semibold text-[var(--text)]">Jessy Artman</strong>, founder of Powerclub Global and managing partner of OKB Ventures.
             </p>
             <p>
+              <strong className="font-semibold text-[var(--text)]">Madhav Gupta</strong> is the engineer behind the Alpha GO mobile app.
+            </p>
+            <p>
               <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="link">Powerclub Global</a> designs, builds and operates the software with a core engineering team.{" "}
               <a href="https://okb-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="link">OKB Ventures</a> is the investment arm behind the Sovereign Stack.
             </p>
             <p>
-              Dedicated entities for the protocol and for the hardware business are being set up. We will tell you exactly where that stands on a call.
+              Today all business is transacted by {OPERATOR}, including these sites, Alpha GO and the VIBE demo sale. Dedicated entities for the protocol and for the hardware business are being set up. We will tell you exactly where that stands on a call.
             </p>
           </div>
         </div>
@@ -220,13 +228,17 @@ export default function InvestorsPage() {
               We are looking for investors who want to back infrastructure for the long term. The quickest way to find out whether that is you is a short call.
             </p>
             <a href={CALL_URL} target="_blank" rel="noopener noreferrer" className="btn mt-8">Book a 20-minute call</a>
+            <p className="muted mt-4 max-w-md text-sm">
+              The booking page is Powerclub Global&apos;s. Pick any time and say it is about Alpha Protocol. Or email{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="link">{CONTACT_EMAIL}</a>.
+            </p>
             <p className="mt-10 max-w-md text-sm text-[var(--faint)]">
               Nothing on this site is an offer to sell securities or a solicitation to buy them. Testnet VIBE is a utility token for use inside the Alpha Protocol ecosystem and is not a share in any company.
             </p>
           </div>
           <div className="panel self-start">
             <p className="mb-5 font-semibold">Request the deck</p>
-            <JoinForm source="website-investors" interest="I am an investor" cta="Request the deck" />
+            <JoinForm source="website-investors" interest="I am an investor" cta="Request the deck" note="We answer deck requests ourselves, by email. We also send occasional Alpha Protocol updates, and you can leave at any time." />
           </div>
         </div>
       </section>

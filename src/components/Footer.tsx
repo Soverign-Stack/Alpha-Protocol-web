@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { COMMUNITY_URL, GO_URL, MORE, NAV, STACK } from "@/lib/site";
+import { COMMUNITY_URL, CONTACT_EMAIL, GO_URL, MORE, NAV, OPERATOR, STACK } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -25,6 +25,8 @@ export default function Footer() {
             {COMMUNITY_URL && (
               <li><a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Community</a></li>
             )}
+            <li><Link href="/terms" className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Terms and privacy</Link></li>
+            <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-[var(--muted)] no-underline hover:text-[var(--accent-hi)]">Contact</a></li>
           </ul>
         </div>
 
@@ -42,7 +44,7 @@ export default function Footer() {
 
       <div className="border-t border-[var(--line-soft)]">
         <div className="wrap flex flex-col gap-2 py-6 text-xs text-[var(--faint)] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Alpha Protocol Network. Part of the Sovereign Stack.</p>
+          <p>© {new Date().getFullYear()} Alpha Protocol Network. Operated by {OPERATOR}. Part of the Sovereign Stack.</p>
           <p>
             Designed and built by{" "}
             <a href="https://powerclubglobal.com" target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--accent-hi)]">Powerclub Global</a>
