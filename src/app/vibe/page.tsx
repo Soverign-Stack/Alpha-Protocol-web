@@ -23,7 +23,8 @@ const facts: [string, React.ReactNode][] = [
   ["Per person", "From $25 up to 100,000 VIBE ($1,000)"],
   ["Pay with", "Bitcoin, USDT (on Ethereum) or Aptos"],
   ["Sold by", OPERATOR],
-  ["Where you hold it", "Your Alpha GO account. Withdrawing it to your own Aptos testnet wallet, and spending it in the app, arrive with the next Alpha GO update."],
+  ["Where you hold it", "Your Alpha GO account. From the Alpha GO app you can send it to other members or withdraw it to your own Aptos testnet wallet (Petra or similar). Withdrawals have a minimum and a daily limit."],
+  ["Earned VIBE", "VIBE you earn for signing up, checking in or inviting people can be spent in the app, but cannot be sent to other members or withdrawn."],
   ["Allocation and vesting", "Being finalised. Published before mainnet."],
 ];
 
